@@ -1,0 +1,10 @@
+{
+  "vehicle": { "id": "1", "label": "Civic 04", "className": "Economy", "plate": "7KXM201" },
+  "activeBooking": { "id": "1", "renterName": "Marcus Webb", "renterPhone": "+1 (415) 555-0142", "trips": 2, "rating": 4.6, "notes": "First rental" },
+  "nextBooking": { "id": "2", "renterName": "Priya Anand", "scheduledStart": 1718876400000, "trips": 14, "rating": 4.95, "notes": "Repeat guest" },
+  "lateBy": 50,
+  "bufferRemaining": -30,
+  "swapCandidate": null,
+  "now": 1718876000000,
+  "formattedNow": "10:10 AM"
+}

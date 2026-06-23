@@ -1,0 +1,71 @@
+:root {
+  /* --- Color tokens --- */
+  --ink: #13151a;
+  --ink-raised: #1b1e26;
+  --ink-card: #20232c;
+  --paper: #f5f3ee;
+  --paper-dim: #b9bcc6;
+  --slate: #7c8a9e;
+  --slate-dim: #4c5566;
+
+  --signal-red: #ff6a39;
+  --signal-red-dim: rgba(255, 106, 57, 0.16);
+  --signal-amber: #ffc93c;
+  --signal-amber-dim: rgba(255, 201, 60, 0.14);
+  --signal-green: #3dd68c;
+  --signal-green-dim: rgba(61, 214, 140, 0.14);
+
+  /* --- Type --- */
+  --font-display: "Archivo", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+::selection {
+  background: var(--signal-red);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--signal-amber);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
