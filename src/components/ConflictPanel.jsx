@@ -93,6 +93,13 @@ export default function ConflictPanel({ vehicle, risk, vehicles, bookings, now, 
     setSent(false);
   }
 
+  function fallbackMessages() {
+    return {
+      to_late_renter: `Hi ${activeBooking.renterName.split(" ")[0]}, this is your host — ${vehicle.label} was due back ${lateBy} min ago and we have another guest waiting on it. Can you confirm your ETA right now? Need the car back as soon as possible.`,
+      to_next_guest: `Hi ${nextBooking.renterName.split(" ")[0]}, quick heads up — the previous renter is running a few minutes behind on ${vehicle.label}. ${chosenOption?.description || "We're handling it and will update you with your pickup time shortly."} Thanks for your patience.`,
+    };
+  }
+
   function draftMessages() {
     setLoadingMessages(true);
     const payload = {
@@ -113,8 +120,14 @@ export default function ConflictPanel({ vehicle, risk, vehicles, bookings, now, 
     })
       .then((r) => r.json())
       .then((data) => {
-        setMessages(data);
-        setUsedFallback((prev) => prev || !!data.usedFallback);
+        const hasValidMessages = data && data.to_late_renter && data.to_next_guest;
+        const finalMessages = hasValidMessages ? data : fallbackMessages();
+        setMessages(finalMessages);
+        setUsedFallback((prev) => prev || !!data.usedFallback || !hasValidMessages);
+      })
+      .catch(() => {
+        setMessages(fallbackMessages());
+        setUsedFallback(true);
       })
       .finally(() => setLoadingMessages(false));
   }
